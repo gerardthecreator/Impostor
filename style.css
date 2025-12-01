@@ -1,0 +1,291 @@
+/* ==========================================================================
+   1. VARIABLES Y ESTILOS GLOBALES
+   ========================================================================== */
+
+:root {
+    --bg-color: #e0e5ec;
+    --text-color: #5c677d;
+    --accent-color: #6d28d9; /* Un morado vibrante */
+    --danger-color: #d92845; /* Un rojo fuerte */
+    --shadow-light: #ffffff;
+    --shadow-dark: #a3b1c6;
+    --font-main: 'Anton', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Helvetica Neue', sans-serif; /* Fuente base para párrafos */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent; /* Evita el flash azul en móviles al tocar */
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ==========================================================================
+   2. GESTIÓN DE PANTALLAS Y LAYOUT
+   ========================================================================== */
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   3. TIPOGRAFÍA
+   ========================================================================== */
+
+.title {
+    font-family: var(--font-main);
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 1px var(--shadow-light), -1px -1px 1px var(--shadow-dark);
+}
+
+.subtitle {
+    font-family: var(--font-main);
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   4. COMPONENTES NEUMÓRFICOS
+   ========================================================================== */
+
+.neu-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 7px 7px 15px var(--shadow-dark), -7px -7px 15px var(--shadow-light);
+}
+
+.neu-btn:hover {
+    color: var(--accent-color);
+}
+
+.neu-btn:active {
+    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+    color: var(--accent-color);
+    font-size: 1.45rem;
+}
+
+.neu-btn.danger { color: var(--danger-color); }
+.neu-btn.danger:hover { color: #ff506c; }
+.neu-btn.danger:active { color: var(--danger-color); }
+
+.neu-input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--bg-color);
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+    text-align: center;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.neu-input:focus {
+    outline: none;
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light), 0 0 0 2px var(--accent-color);
+}
+
+.neu-card {
+    width: 100%;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    box-shadow: 7px 7px 15px var(--shadow-dark), -7px -7px 15px var(--shadow-light);
+    margin-bottom: 25px;
+}
+
+.neu-card-raised {
+    width: 100%;
+    padding: 25px;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+}
+
+.neu-card-inset {
+    width: 100%;
+    padding: 25px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    box-shadow: inset 8px 8px 16px var(--shadow-dark), inset -8px -8px 16px var(--shadow-light);
+}
+
+/* ==========================================================================
+   5. ESTILOS ESPECÍFICOS POR PANTALLA
+   ========================================================================== */
+
+.form-group { margin-bottom: 20px; width: 100%; }
+.form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: bold; }
+#player-inputs-container { width: 100%; margin-bottom: 25px; }
+.player-input-group { display: flex; gap: 10px; margin-bottom: 15px; }
+.player-input-group input:first-child { flex-grow: 1; }
+.player-input-group input:last-child { width: 90px; }
+.pin-display { font-size: 2rem; letter-spacing: 15px; padding-left: 25px; }
+.card-container { width: 280px; height: 400px; perspective: 1000px; cursor: pointer; margin-bottom: 25px; }
+.card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.card-back { transform: rotateY(180deg); }
+.card-container.revealed .card-front { transform: rotateY(-180deg); }
+.card-container.revealed .card-back { transform: rotateY(0deg); }
+.instruction-text { font-size: 1.2rem; margin-top: 10px; font-weight: lighter; }
+.role { font-family: var(--font-main); font-size: 3rem; margin-bottom: 20px; }
+.role.impostor { color: var(--danger-color); }
+.word-label { font-size: 1.1rem; font-weight: bold; }
+.secret-word { font-size: 2.2rem; font-weight: bold; color: var(--accent-color); margin-top: 5px; word-break: break-word; padding: 0 10px; }
+.countdown-display { font-family: var(--font-main); font-size: 10rem; line-height: 1; color: var(--text-color); text-shadow: 3px 3px 5px var(--shadow-dark), -3px -3px 5px var(--shadow-light); }
+#starter-announcement { padding: 20px; margin-top: 30px; font-size: 1.3rem; font-weight: bold; }
+.timer-container { width: 250px; height: 250px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+.timer-display { font-family: var(--font-main); font-size: 6rem; color: var(--text-color); }
+.info-text { margin-bottom: 10px; font-weight: bold; }
+#voting-area { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; padding: 20px; margin-bottom: 20px; }
+.vote-button { padding: 12px 5px; border: none; border-radius: 12px; background-color: var(--bg-color); color: var(--text-color); font-family: var(--font-main); font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease-in-out; box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); position: relative; }
+.vote-button:active { box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light); color: var(--accent-color); transform: scale(0.98); }
+.vote-count { position: absolute; top: -8px; right: -8px; background-color: var(--danger-color); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-family: 'Helvetica Neue', sans-serif; font-size: 0.9rem; font-weight: bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+.result-details { text-align: left; padding: 30px; }
+.result-details h2 { font-family: var(--font-main); font-size: 1.8rem; text-align: center; margin-bottom: 20px; color: var(--accent-color); }
+.result-details p { font-size: 1.1rem; margin-bottom: 15px; }
+.result-details span { font-weight: bold; color: var(--text-color); }
+#impostor-reveal { color: var(--danger-color); }
+#word-reveal { color: var(--accent-color); }
+#play-again-btn { margin-top: 20px; }
+
+/* ==========================================================================
+   6. ESTILOS DEL MODAL PERSONALIZADO
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(49, 58, 75, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.modal-overlay:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 350px;
+    padding: 30px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay:not(.hidden) .modal-content {
+    transform: scale(1);
+}
+
+#modal-title {
+    font-family: var(--font-main);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+#modal-text {
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+#modal-input {
+    margin-bottom: 25px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+#modal-confirm-btn {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+}
+
+#modal-confirm-btn:active {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: inset 3px 3px 6px #521ea3, inset -3px -3px 6px #8832ff;
+}

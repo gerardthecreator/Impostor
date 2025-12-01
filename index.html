@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Impostor - Neuromorfismo</title>
+    
+    <!-- Google Fonts: Anton -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    
+    <!-- Hojas de Estilo -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+    <div id="app">
+        <!-- ======================= PANTALLA DE CONFIGURACIÓN ======================= -->
+        <div id="config-screen" class="screen active">
+            <div class="container">
+                <h1 class="title">IMPOSTOR</h1>
+                <div class="neu-card">
+                    <div class="form-group">
+                        <label for="player-count">Número de Jugadores:</label>
+                        <select id="player-count" class="neu-input">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="round-time">Tiempo de Debate (segundos):</label>
+                        <input id="round-time" type="number" value="90" min="30" max="300" class="neu-input">
+                    </div>
+                </div>
+                <div id="player-inputs-container">
+                    <!-- Los inputs de los jugadores se generarán aquí con JS -->
+                </div>
+                <button id="start-game-btn" class="neu-btn">Empezar Juego</button>
+            </div>
+        </div>
+
+        <!-- ======================= PANTALLA DE REVELACIÓN DE ROL ======================= -->
+        <div id="reveal-screen" class="screen">
+            <div class="container">
+                <h2 id="player-turn-title" class="subtitle">Turno de...</h2>
+                
+                <div id="pin-verification" class="neu-card">
+                    <p>Ingresa tu PIN de 4 dígitos para ver tu rol.</p>
+                    <input type="password" id="pin-input" maxlength="4" inputmode="numeric" class="neu-input pin-display">
+                    <button id="verify-pin-btn" class="neu-btn">Ver Carta</button>
+                </div>
+
+                <div id="role-card-area" class="hidden">
+                    <div class="card-container" id="reveal-card-container">
+                        <div class="card-front neu-card-raised">
+                            <h3>TU CARTA</h3>
+                            <p class="instruction-text">Toca para revelar</p>
+                        </div>
+                        <div class="card-back neu-card">
+                            <p class="role" id="player-role"></p>
+                            <p class="word-label" id="word-clue-label"></p>
+                            <p class="secret-word" id="player-word"></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="next-player-btn" class="neu-btn hidden">Siguiente Jugador</button>
+            </div>
+        </div>
+
+        <!-- ======================= PANTALLA DE CUENTA ATRÁS ======================= -->
+        <div id="countdown-screen" class="screen">
+            <div class="container">
+                <p class="info-text">¡Prepárense!</p>
+                <div id="countdown-number" class="countdown-display">3</div>
+                <div id="starter-announcement" class="neu-card">
+                    <!-- Anuncio del jugador que empieza -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PANTALLA DE DEBATE ======================= -->
+        <div id="debate-screen" class="screen">
+            <div class="container">
+                <h2 class="subtitle">¡A DEBATIR!</h2>
+                <div class="timer-container neu-card-inset">
+                    <div class="timer-display" id="timer-display">90</div>
+                </div>
+                <p class="info-text">Vota por quien crees que es el impostor:</p>
+                <div id="voting-area" class="neu-card">
+                    <!-- Los botones de votación se generarán aquí -->
+                </div>
+                <button id="end-vote-btn" class="neu-btn danger">Finalizar Votación</button>
+            </div>
+        </div>
+
+        <!-- ======================= PANTALLA FINAL ======================= -->
+        <div id="end-screen" class="screen">
+            <div class="container">
+                <h1 id="game-result-title" class="title">¡Fin del Juego!</h1>
+                <div class="neu-card result-details">
+                    <h2 id="winner-announcement"></h2>
+                    <p>El Impostor era: <span id="impostor-reveal"></span></p>
+                    <p>La Palabra Secreta era: <span id="word-reveal"></span></p>
+                    <p>La Pista del Impostor era: <span id="clue-reveal"></span></p>
+                </div>
+                <button id="play-again-btn" class="neu-btn">Jugar de Nuevo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================= MODAL PERSONALIZADO ======================= -->
+    <div id="custom-modal" class="modal-overlay hidden">
+        <div class="modal-content neu-card">
+            <h3 id="modal-title">Título del Modal</h3>
+            <p id="modal-text">Texto descriptivo del modal.</p>
+            <input type="text" id="modal-input" class="neu-input">
+            <div class="modal-buttons">
+                <button id="modal-cancel-btn" class="neu-btn">Cancelar</button>
+                <button id="modal-confirm-btn" class="neu-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script del Juego -->
+    <script src="script.js"></script>
+</body>
+</html>

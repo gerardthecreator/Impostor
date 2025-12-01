@@ -1,0 +1,133 @@
+/* ==========================================================================
+   ESTILOS RESPONSIVE PARA PANTALLAS PEQUEÑAS (≤ 540px)
+   ========================================================================== */
+
+@media (max-width: 540px) {
+
+    /* --- AJUSTES GLOBALES Y DE LAYOUT --- */
+    .screen {
+        padding: 15px; /* Menos padding en los bordes */
+    }
+
+    .container {
+        max-width: 100%; /* Ocupa todo el ancho disponible */
+    }
+
+    /* --- AJUSTES DE TIPOGRAFÍA --- */
+    .title {
+        font-size: 2.8rem; /* Título principal ligeramente más pequeño */
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        font-size: 2rem; /* Subtítulos más compactos */
+    }
+
+    p {
+        font-size: 0.95rem; /* Texto de párrafo un poco más pequeño */
+    }
+
+    /* --- AJUSTES DE COMPONENTES --- */
+    .neu-btn {
+        padding: 16px;
+        font-size: 1.3rem; /* Botones un poco más pequeños */
+        border-radius: 15px;
+    }
+
+    .neu-input {
+        padding: 14px;
+        font-size: 1rem;
+        border-radius: 12px;
+    }
+
+    .neu-card {
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* --- PANTALLA DE CONFIGURACIÓN --- */
+    .player-input-group {
+        flex-direction: column; /* Apila nombre y PIN verticalmente */
+        gap: 8px;
+    }
+
+    .player-input-group input:last-child {
+        width: 100%; /* El PIN ocupa todo el ancho */
+    }
+
+    /* --- PANTALLA DE REVELACIÓN --- */
+    .pin-display {
+        font-size: 1.8rem; /* PIN más pequeño para que quepa bien */
+        letter-spacing: 10px;
+        padding-left: 18px; /* Ajuste del padding */
+    }
+
+    .card-container {
+        width: 90vw; /* La tarjeta se ajusta al ancho de la pantalla */
+        max-width: 260px; /* Pero con un máximo para no ser demasiado grande */
+        height: calc(90vw * 1.4); /* Mantiene la proporción */
+        max-height: 364px;
+    }
+
+    .role {
+        font-size: 2.5rem;
+    }
+
+    .secret-word {
+        font-size: 1.8rem;
+    }
+
+    /* --- PANTALLA DE CUENTA ATRÁS Y DEBATE --- */
+    .countdown-display {
+        font-size: 8rem; /* Número de cuenta atrás más pequeño */
+    }
+
+    #starter-announcement {
+        font-size: 1.1rem;
+    }
+
+    .timer-container {
+        width: 200px; /* Círculo del temporizador más pequeño */
+        height: 200px;
+    }
+
+    .timer-display {
+        font-size: 4.5rem; /* Número del temporizador más pequeño */
+    }
+
+    #voting-area {
+        gap: 12px;
+    }
+
+    .vote-button {
+        font-size: 1rem;
+        padding: 10px 5px;
+    }
+
+    .vote-count {
+        width: 22px;
+        height: 22px;
+        font-size: 0.8rem;
+    }
+
+    /* --- PANTALLA FINAL --- */
+    .result-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .result-details p {
+        font-size: 1rem;
+    }
+    
+    /* --- AJUSTES DEL MODAL PERSONALIZADO --- */
+    #modal-title {
+        font-size: 1.5rem;
+    }
+    #modal-text {
+        font-size: 0.9rem;
+    }
+    .modal-buttons {
+        flex-direction: column; /* Apila los botones para facilitar el toque */
+    }
+}
